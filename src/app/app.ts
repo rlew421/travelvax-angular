@@ -1,12 +1,9 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { AppLayoutComponent } from './components/app-layout/app-layout';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [AppLayoutComponent],
   selector: 'app-root',
-  styleUrl: './app.css',
-  templateUrl: './app.html',
+  template: `<app-layout></app-layout>`,
 })
-export class App {
-  protected readonly title = signal('travelvax-angular');
-}
+export class App {}

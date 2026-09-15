@@ -1,0 +1,14 @@
+<div class="h-screen flex flex-col">
+  <header class="fixed top-0 left-0 right-0 z-[4000] h-20 bg-white">
+    <app-header (toggleSidebar)="toggleSidebar()"></app-header>
+  </header>
+
+  <app-sidebar
+    [isOpen]="sidebarOpen"
+    (toggleSidebar)="toggleSidebar()"
+  ></app-sidebar>
+
+  <main class="pt-20 flex-1 overflow-y-auto">
+    <router-outlet></router-outlet>
+  </main>
+</div>

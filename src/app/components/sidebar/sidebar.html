@@ -1,0 +1,35 @@
+@if (isOpen) {
+  <div
+    class="fixed inset-0 bg-black/20 z-[9998]"
+    (click)="onToggle()"
+  ></div>
+}
+
+<aside [ngClass]="{
+  'translate-x-0': isOpen,
+  'translate-x-full': !isOpen
+}" class="
+  fixed top-0 right-0 h-full w-72
+  bg-white border border-slate-100 shadow-xl rounded-l-2xl
+  transform transition-transform duration-300
+  z-[9999]
+">
+  <button (click)="onToggle()" class="p-4 text-right w-full">
+    ✕
+  </button>
+
+  <nav class="px-4 space-y-2">
+    @for (item of menuItems; track item.label) {
+      <a
+        [routerLink]="item.path"
+        routerLinkActive="bg-slate-100 font-semibold"
+        class="block w-full text-left px-4 py-2 rounded-md
+          transition-colors hover:bg-slate-50
+          focus:outline-none focus:ring-2"
+        (click)="onToggle()"
+      >
+        {{ item.label }}
+      </a>
+    }
+  </nav>
+</aside>
