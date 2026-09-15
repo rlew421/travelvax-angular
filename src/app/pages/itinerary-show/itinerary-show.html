@@ -1,1 +1,65 @@
-<p>itinerary-show works!</p>
+@if (loading) {
+  <p>Loading...</p>
+} @else if (!itinerary) {
+  <p>Itinerary not found.</p>
+} @else {
+  <main class="flex flex-col md:flex-row bg-white md:h-full">
+    <div class="w-full md:w-1/2 px-6 py-8 space-y-10 md:h-full md:overflow-y-auto">
+      <section class="space-y-4">
+        <img
+          src="/images/rice_field.jpg"
+          [alt]="itinerary.name"
+          class="w-full h-auto rounded-3xl"
+        />
+        <h1 class="text-4xl font-bold tracking-tight text-gray-900">
+          {{ itinerary.name }}
+        </h1>
+      </section>
+
+      <section class="bg-gray-50 rounded-2xl p-6 shadow-sm">
+        <h2 class="text-lg font-semibold mb-4 text-gray-900">Routine Vaccines</h2>
+        <ul class="flex flex-wrap gap-2">
+          @for (vaccine of routineVaccines; track vaccine) {
+            <li class="px-3 py-1 text-sm bg-white border border-gray-200 rounded-full">
+              {{ vaccine }}
+            </li>
+          }
+        </ul>
+      </section>
+
+      <section class="bg-gray-50 rounded-2xl p-6 shadow-sm">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div>
+            <h2 class="text-lg font-semibold mb-4 text-gray-900">Countries</h2>
+            <ul class="space-y-3">
+              @for (country of itinerary.countries; track country.id) {
+                <li>{{ country.name }}</li>
+              }
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="text-lg font-semibold mb-4 text-gray-900">Recommended Vaccines</h2>
+            <ul class="space-y-3">
+              @for (rec of itinerary.recommendations; track rec.name) {
+                <li>
+                  <a [href]="rec.description" target="_blank"
+                    class="text-slate-700 hover:underline">
+                    {{ rec.name }}
+                  </a>
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="w-full md:w-1/2 h-[400px] md:h-full bg-slate-100 flex items-center justify-center rounded-l-3xl">
+      <div class="text-center text-slate-400">
+        <p class="text-lg font-semibold">Interactive Map</p>
+        <p class="text-sm mt-1">Coming soon — powered by Leaflet</p>
+      </div>
+    </div>
+  </main>
+}

@@ -1,5 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { ItineraryService } from '../../services/itinerary';
 import { CountryService } from '../../services/country';
 import { Itinerary } from '../../interfaces/itinerary.interface';
@@ -16,6 +15,7 @@ import { CreateItineraryFormComponent } from '../../components/create-itinerary-
 export class ItinerariesComponent implements OnInit {
   private itineraryService = inject(ItineraryService);
   private countryService = inject(CountryService);
+  private cdr = inject(ChangeDetectorRef);
 
   itineraries: Itinerary[] = [];
   countries: Country[] = [];
@@ -23,13 +23,16 @@ export class ItinerariesComponent implements OnInit {
   ngOnInit() {
     this.itineraryService.getItineraries().subscribe(data => {
       this.itineraries = data;
+      this.cdr.detectChanges();
     });
     this.countryService.getCountries().subscribe(data => {
       this.countries = data;
+      this.cdr.detectChanges();
     });
   }
 
   addItinerary(itinerary: Itinerary) {
     this.itineraries = [...this.itineraries, itinerary];
+    this.cdr.detectChanges();
   }
 }

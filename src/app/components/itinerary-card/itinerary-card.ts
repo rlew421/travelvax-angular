@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Itinerary } from '../../interfaces/itinerary.interface';
 
 @Component({
   selector: 'app-itinerary-card',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './itinerary-card.html',
   styleUrl: './itinerary-card.css'
 })
