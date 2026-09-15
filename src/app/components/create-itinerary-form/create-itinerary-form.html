@@ -1,0 +1,32 @@
+<div class="bg-white p-6 rounded-3xl shadow-lg w-full max-w-md hover:shadow-xl">
+  <h3 class="text-2xl mb-2">Where are you going?</h3>
+  <p class="text-sm text-slate-600 mb-4">
+    Create your itinerary by choosing a name and a destination.
+  </p>
+
+  <div class="flex flex-col gap-4">
+    <input
+      type="text"
+      placeholder="Itinerary Name"
+      [(ngModel)]="itineraryName"
+      class="border border-slate-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-slate-400"
+    />
+
+    <select
+      [(ngModel)]="selectedCountryId"
+      class="border border-slate-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-slate-400"
+    >
+      <option value="" disabled>-- Choose a country --</option>
+      @for (country of countries; track country.id) {
+        <option [value]="country.id">{{ country.name }}</option>
+      }
+    </select>
+  </div>
+
+  <button
+    (click)="createItinerary()"
+    class="mt-4 w-full bg-slate-900 text-white py-2 rounded-full font-semibold transition hover:bg-black"
+  >
+    Create Your Itinerary!
+  </button>
+</div>
