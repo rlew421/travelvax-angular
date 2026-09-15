@@ -1,59 +1,51 @@
-# TravelvaxAngular
+# TravelVax Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.8.
+A rebuild of the TravelVax React frontend in Angular 22, built to learn Angular's component model, services, dependency injection, and routing.
 
-## Development server
+TravelVax helps travelers plan international trips with confidence by providing personalized vaccination recommendations for every destination.
 
-To start a local development server, run:
+## Why Angular?
 
-```bash
-ng serve
+I build this project to get hands-on Angular experience. I rebuilt the most basic features of an existing project so I could focus on learning Angular's patterns.
+
+## Live Demo
+
+[travelvax-angular.vercel.app](https://travelvax-angular.vercel.app)
+
+## Tech Stack
+
+- **Angular 22** — components, services, dependency injection, RxJS Observables
+- **TypeScript** — interfaces, strict typing throughout
+- **Tailwind CSS** — same styling system as the React version for easy comparison
+- **RxJS** — Observables for async data fetching via `HttpClient`
+- **Vitest** — unit tests for services using `HttpTestingController`
+
+## What's Implemented
+
+- Landing page with background image and call to action
+- Itineraries index — fetches from Rails API and displays itinerary cards
+- Create itinerary form — POST to Rails API, new card appears without page reload
+- Itinerary show page — displays countries, routine vaccines, and destination-specific vaccine recommendations with a map placeholder
+
+## What's Planned (Next Iteration)
+
+- **Interactive map** — the React version uses Leaflet to display an interactive map on the show page (screenshot below). This would be added to Angular using `ngx-leaflet`
+- **Authentication** — the React version has full Clerk OAuth + email OTP 2FA. Angular auth is scoped out of this iteration
+- **Save itinerary flow** — guest users can create itineraries and save them to their account after signing in
+
+## Architecture
+
+Follows Angular best practices with a clean separation of concerns:
+
+```
+src/app/
+  components/     # reusable UI components (header, sidebar, itinerary card, form)
+  pages/          # routed page components (landing, itineraries, show)
+  services/       # HttpClient API calls (itinerary, country)
+  interfaces/     # TypeScript data shapes (Itinerary, Country, Vaccine)
+  environments/   # environment-specific config (dev vs production API URL)
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Interactive Map (React version — planned for Angular)
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+![TravelVax interactive map](./map-screenshot.png)
