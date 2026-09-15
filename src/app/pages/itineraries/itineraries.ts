@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
   styleUrl: './itineraries.css',
   templateUrl: './itineraries.html',
 })
-export class Itineraries {}
+export class ItinerariesComponent {}

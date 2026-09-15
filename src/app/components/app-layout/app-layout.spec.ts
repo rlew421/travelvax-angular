@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppLayout } from './app-layout';
+import { AppLayoutComponent } from './app-layout';
 
 describe('AppLayout', () => {
   let component: AppLayout;
@@ -10,7 +10,7 @@ describe('AppLayout', () => {
       imports: [AppLayout],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AppLayout);
+    fixture = TestBed.createComponent(AppLayoutComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
